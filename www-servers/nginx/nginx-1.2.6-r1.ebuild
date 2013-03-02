@@ -72,6 +72,12 @@ HTTP_FANCYINDEX_MODULE_P="ngx_http_fancyindex-${HTTP_FANCYINDEX_MODULE_PV}"
 HTTP_FANCYINDEX_MODULE_URI="http://gitorious.org/ngx-fancyindex/ngx-fancyindex/archive-tarball/2034d0ad"
 HTTP_FANCYINDEX_MODULE_WD="${WORKDIR}/ngx-fancyindex-ngx-fancyindex"
 
+# http-concat (https://github.com/taobao/nginx-http-concat, BSD licence)
+HTTP_CONCAT_MODULE_PV="1.2.2"
+HTTP_CONCAT_MODULE_P="nginx-http-concat-${HTTP_CONCAT_MODULE_PV}"
+HTTP_CONCAT_MODULE_URI="https://github.com/taobao/nginx-http-concat/archive/${HTTP_CONCAT_MODULE_PV}.tar.gz"
+HTTP_CONCAT_MODULE_WD="${WORKDIR}/${HTTP_CONCAT_MODULE_P}"
+
 # http_lua (https://github.com/chaoslawful/lua-nginx-module, BSD license)
 HTTP_LUA_MODULE_PV="0.7.11"
 HTTP_LUA_MODULE_P="ngx_http_lua-${HTTP_LUA_MODULE_PV}"
@@ -98,6 +104,7 @@ SRC_URI="http://nginx.org/download/${P}.tar.gz
 	nginx_modules_http_upload? ( ${HTTP_UPLOAD_MODULE_URI} -> ${HTTP_UPLOAD_MODULE_P}.tar.gz )
 	nginx_modules_http_slowfs_cache? ( ${HTTP_SLOWFS_CACHE_MODULE_URI} -> ${HTTP_SLOWFS_CACHE_MODULE_P}.tar.gz )
 	nginx_modules_http_fancyindex? ( ${HTTP_FANCYINDEX_MODULE_URI} -> ${HTTP_FANCYINDEX_MODULE_P}.tar.gz )
+	nginx_modules_http_concat? ( ${HTTP_CONCAT_MODULE_URI} -> ${HTTP_CONCAT_MODULE_P}.tar.gz )
 	nginx_modules_http_lua? ( ${HTTP_LUA_MODULE_URI} -> ${HTTP_LUA_MODULE_P}.tar.gz )
 	nginx_modules_http_auth_pam? ( ${HTTP_AUTH_PAM_MODULE_URI} -> ${HTTP_AUTH_PAM_MODULE_P}.tar.gz )"
 
@@ -119,6 +126,7 @@ NGINX_MODULES_3RD="
 	http_upload
 	http_slowfs_cache
 	http_fancyindex
+	http_concat
 	http_lua
 	http_auth_pam"
 
@@ -270,6 +278,11 @@ src_configure() {
 		myconf+=" --add-module=${HTTP_FANCYINDEX_MODULE_WD}"
 	fi
 
+	if use nginx_modules_http_concat; then
+		http_enabled=1
+		myconf+=" --add-module=${HTTP_CONCAT_MODULE_WD}"
+	fi
+
 	if use nginx_modules_http_lua; then
 		http_enabled=1
 		myconf+=" --add-module=${DEVEL_KIT_MODULE_WD}"
@@ -394,6 +407,11 @@ src_install() {
 	if use nginx_modules_http_fancyindex; then
 		docinto ${HTTP_FANCYINDEX_MODULE_P}
 		dodoc "${HTTP_FANCYINDEX_MODULE_WD}"/README.rst
+	fi
+
+	if use nginx_modules_http_concat; then
+		docinto ${HTTP_CONCAT_MODULE_P}
+		dodoc "${HTTP_CONCAT_MODULE_WD}"/README.md
 	fi
 
 	if use nginx_modules_http_lua; then
