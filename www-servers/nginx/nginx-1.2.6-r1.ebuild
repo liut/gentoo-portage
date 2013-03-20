@@ -72,10 +72,10 @@ HTTP_FANCYINDEX_MODULE_P="ngx_http_fancyindex-${HTTP_FANCYINDEX_MODULE_PV}"
 HTTP_FANCYINDEX_MODULE_URI="http://gitorious.org/ngx-fancyindex/ngx-fancyindex/archive-tarball/2034d0ad"
 HTTP_FANCYINDEX_MODULE_WD="${WORKDIR}/ngx-fancyindex-ngx-fancyindex"
 
-# http-concat (https://github.com/taobao/nginx-http-concat, BSD licence)
+# http-concat (https://github.com/alibaba/nginx-http-concat, BSD licence)
 HTTP_CONCAT_MODULE_PV="1.2.2"
 HTTP_CONCAT_MODULE_P="nginx-http-concat-${HTTP_CONCAT_MODULE_PV}"
-HTTP_CONCAT_MODULE_URI="https://github.com/taobao/nginx-http-concat/archive/${HTTP_CONCAT_MODULE_PV}.tar.gz"
+HTTP_CONCAT_MODULE_URI="https://github.com/alibaba/nginx-http-concat/archive/${HTTP_CONCAT_MODULE_PV}.tar.gz"
 HTTP_CONCAT_MODULE_WD="${WORKDIR}/${HTTP_CONCAT_MODULE_P}"
 
 # http_lua (https://github.com/chaoslawful/lua-nginx-module, BSD license)
