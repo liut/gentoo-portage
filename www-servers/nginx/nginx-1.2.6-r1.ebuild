@@ -198,6 +198,10 @@ pkg_setup() {
 }
 
 src_prepare() {
+
+	# liut add: image_filter watermark
+	epatch ${FILESDIR}/image_filter_watermark.patch
+
 	use syslog && epatch "${SYSLOG_MODULE_WD}"/syslog_${SYSLOG_MODULE_NGINX_PV}.patch
 
 	find auto/ -type f -print0 | xargs -0 sed -i 's:\&\& make:\&\& \\$(MAKE):' || die
