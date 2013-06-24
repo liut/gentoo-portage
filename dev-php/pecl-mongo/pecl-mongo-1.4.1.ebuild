@@ -5,12 +5,15 @@
 EAPI=5
 
 PHP_EXT_NAME="mongo"
+PHP_EXT_PECL_PKG="mongo-php-driver"
 
 USE_PHP="php5-3 php5-4"
 
 inherit php-ext-pecl-r2
 
 DESCRIPTION="MongoDB database driver"
+HOMEPAGE="https://github.com/mongodb/mongo-php-driver"
+SRC_URI="https://github.com/mongodb/mongo-php-driver/archive/${PV}.tar.gz -> ${PN}-${PV}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
