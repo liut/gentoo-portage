@@ -371,6 +371,11 @@ src_configure() {
 		myconf+=" --add-module=${HTTP_FANCYINDEX_MODULE_WD}"
 	fi
 
+	if use nginx_modules_http_concat; then
+		http_enabled=1
+		myconf+=" --add-module=${HTTP_CONCAT_MODULE_WD}"
+	fi
+
 	if use nginx_modules_http_lua; then
 		http_enabled=1
 		myconf+=" --add-module=${DEVEL_KIT_MODULE_WD}"
@@ -559,6 +564,11 @@ src_install() {
 	if use nginx_modules_http_fancyindex; then
 		docinto ${HTTP_FANCYINDEX_MODULE_P}
 		dodoc "${HTTP_FANCYINDEX_MODULE_WD}"/README.rst
+	fi
+
+	if use nginx_modules_http_concat; then
+		docinto ${HTTP_CONCAT_MODULE_P}
+		dodoc "${HTTP_CONCAT_MODULE_WD}"/README.md
 	fi
 
 	if use nginx_modules_http_lua; then
